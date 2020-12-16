@@ -1,9 +1,31 @@
 (function() {
 
   const serverUrl = 'http://127.0.0.1:3000';
+  //
+  console.log('yo');
+  //
 
   //
   // TODO: build the swim command fetcher here
+  //
+
+  const swimCommandFetcher = (messages) => {
+    // console.log('hello');
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      data: {retrievedData: messages},
+      success: () => {
+        console.log('Successful fetch');
+        // console.log(data.messages)
+      },
+      error: () => {
+        console.log('error fetching swim commands');
+      }
+    })
+  }
+  //
+  swimCommandFetcher('left');
   //
 
   /////////////////////////////////////////////////////////////////////
@@ -17,7 +39,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
