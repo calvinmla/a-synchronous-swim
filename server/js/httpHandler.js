@@ -15,7 +15,10 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = ()=>{}) => {
 
   if (req.method === 'GET') {
-    res._data = this.randomCommand();
+    res.writeHead(200, headers);
+    res.data = this.randomCommand();
+    // console.log(res.data);
+    res.end(res.data);
   }
 
   console.log('Serving request type ' + req.method + ' for url ' + req.url);

@@ -1,6 +1,4 @@
-// left and rigth were added. initially an empty array
-
-const messages = ['left', 'right']; // the storage unit for messages
+const messages = []; // the storage unit for messages
 
 module.exports.enqueue = (message) => {
   console.log(`Enqueing message: ${message}`);

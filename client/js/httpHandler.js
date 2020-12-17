@@ -1,32 +1,32 @@
 (function() {
 
   const serverUrl = 'http://127.0.0.1:3000';
-  //
-  console.log('yo');
-  //
 
   //
   // TODO: build the swim command fetcher here
   //
 
-  const swimCommandFetcher = (messages) => {
-    // console.log('hello');
+  const swimCommandFetcher = () => {
     $.ajax({
-      type: 'GET',
       url: serverUrl,
-      data: {retrievedData: messages},
-      success: () => {
-        console.log('Successful fetch');
-        // console.log(data.messages)
+      type: 'GET',
+      // data: {},
+      success: (data) => {
+        // console.log('Successful fetch');
+        // console.log('data:', data)
+        SwimTeam.move(data)
       },
       error: () => {
         console.log('error fetching swim commands');
       }
     })
   }
+
   //
-  swimCommandFetcher(messages);
+  setInterval(swimCommandFetcher, 5000);
   //
+
+  // console.log(swimCommandFetcher())
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -69,3 +69,5 @@
   });
 
 })();
+
+// setInterval(swimCommandFetcher, 5000);
