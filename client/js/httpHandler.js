@@ -25,7 +25,7 @@
     })
   }
   //
-  swimCommandFetcher('left');
+  swimCommandFetcher(messages);
   //
 
   /////////////////////////////////////////////////////////////////////
