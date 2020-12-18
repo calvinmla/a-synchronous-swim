@@ -26,7 +26,7 @@
   setInterval(swimCommandFetcher, 5000);
   //
 
-  // console.log(swimCommandFetcher())
+  // swimCommandFetcher()
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!

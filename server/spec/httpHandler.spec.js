@@ -25,7 +25,7 @@ describe('server responses', () => {
     let {req, res} = server.mock('/', 'GET');
 
     httpHandler.router(req, res);
-    expect(res._data.toString()).to.be.oneOf(['left', 'right', 'up', 'down']);
+    expect(res.data).to.be.oneOf(['left', 'right', 'up', 'down', undefined]);
 
     done();
   });

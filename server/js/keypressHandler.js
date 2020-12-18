@@ -32,6 +32,7 @@ module.exports.initialize = (callback) => {
   // setup an event handler on standard input
   process.stdin.on('keypress', (chunk, key) => {
     // ctrl+c should quit the program
+    // console.log('this is the key in initialize:', key.toString());
     if (key && key.ctrl && key.name === 'c') {
       process.exit();
     }
