@@ -10,10 +10,8 @@
     $.ajax({
       url: serverUrl,
       type: 'GET',
-      // data: {},
       success: (data) => {
         // console.log('Successful fetch');
-        // console.log('data:', data)
         SwimTeam.move(data)
       },
       error: () => {
@@ -69,5 +67,3 @@
   });
 
 })();
-
-// setInterval(swimCommandFetcher, 5000);
