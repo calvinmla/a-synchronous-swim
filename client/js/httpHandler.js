@@ -37,16 +37,16 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl,
+      url: '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
       success: () => {
         console.log('success');
-        console.log(getElementByClass('file'));
+        console.log(formData);
         // Maybe reloading the page updates the CSS file since it makes the GET request
         // reload the page
-        // window.location = window.location.href;
+        window.location = window.location.href;
       }
     });
   };
