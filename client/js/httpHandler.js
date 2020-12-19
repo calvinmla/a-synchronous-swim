@@ -42,8 +42,11 @@
       contentType: false,
       processData: false,
       success: () => {
+        console.log('success');
+        console.log(getElementByClass('file'));
+        // Maybe reloading the page updates the CSS file since it makes the GET request
         // reload the page
-        window.location = window.location.href;
+        // window.location = window.location.href;
       }
     });
   };

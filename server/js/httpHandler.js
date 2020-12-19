@@ -3,6 +3,7 @@ const path = require('path');
 const headers = require('./cors');
 const multipart = require('./multipartUtils');
 const messages = require('./messageQueue');
+const url = require('url');
 
 // Path for the background image ///////////////////////
 module.exports.backgroundImageFile = path.join('.', 'spec', 'water-lg.jpg');
@@ -17,14 +18,6 @@ module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
   if (req.method === 'GET') {
-
-    // Have no idea if this is rigtht or not. Just made the url match the updated backgroundImageFile path
-    // if (req.url === 'spec/missing.jpg') {
-    //   res.writeHead(404, headers);
-    //   res.end();
-    //   next();
-    // }
-
     // need to use node fs module > get file data > put file data on response (cannot use res.data)
     if (req.url === '/background.jpg') {
       fs.readFile(this.backgroundImageFile, (err, data) => {
@@ -50,7 +43,35 @@ module.exports.router = (req, res, next = ()=>{}) => {
   }
 
   if (req.method === 'POST') {
-    next();
+    // module.exports.backgroundImageFile = path.join('file path from user');
+    // this.backgroundImageFile = path.join('.', 'spec', 'temp.jpg');
+    console.log('post request')
+    console.log('req.data', req.data);
+
+    let file = [];
+    req.on('data', (chunk) => {
+      file.push(chunk);
+    }).on('end', () => {
+      file = Buffer.concat(file).toString();
+    })
+
+    this.backgroundImageFile = file;
+    console.log(this.backgroundImageFile);
+
+    fs.readFile(file, (err, data) => {
+
+      if (err) {
+        res.writeHead(404, headers);
+        console.log(err);
+        res.end();
+        next();
+      } else {
+        res.writeHead(201, headers);
+        // send back this.backgroundImageFile = path.join(with uploaded data)
+        res.end(data);
+        next();
+      }
+    })
   }
 
   if (req.method === 'OPTIONS') {
