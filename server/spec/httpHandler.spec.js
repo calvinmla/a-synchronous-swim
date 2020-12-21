@@ -4,7 +4,7 @@ const path = require('path');
 const expect = require('chai').expect;
 const server = require('./mockServer');
 const httpHandler = require('../js/httpHandler');
-const multipart = require('../js/multipartUtils.js')
+const multipart = require('../js/multipartUtils');
 
 
 
@@ -74,7 +74,7 @@ describe('server responses', () => {
       httpHandler.router(post.req, post.res, () => {
         let get = server.mock('/background.jpg', 'GET');
         httpHandler.router(get.req, get.res, () => {
-          var file = multipart.getFile(fileData);
+          let file = multipart.getFile(fileData)
           expect(Buffer.compare(file.data, get.res._data)).to.equal(0);
           done();
         });
