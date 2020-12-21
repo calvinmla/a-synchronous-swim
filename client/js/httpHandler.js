@@ -2,16 +2,11 @@
 
   const serverUrl = 'http://127.0.0.1:3000';
 
-  //
-  // TODO: build the swim command fetcher here
-  //
-
   const swimCommandFetcher = () => {
     $.ajax({
       url: serverUrl,
       type: 'GET',
       success: (data) => {
-        // console.log('Successful fetch');
         SwimTeam.move(data)
       },
       error: () => {
@@ -43,8 +38,6 @@
       processData: false,
       success: () => {
         console.log('success');
-        console.log(formData);
-        // Maybe reloading the page updates the CSS file since it makes the GET request
         // reload the page
         window.location = window.location.href;
       }
